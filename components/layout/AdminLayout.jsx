@@ -4,6 +4,19 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
+import {
+  LuChartBar,
+  LuBookOpen,
+  LuFilePlus,
+  LuHouse,
+  LuLayoutDashboard,
+  LuLogOut,
+  LuMail,
+  LuMenu,
+  LuPlus,
+  LuStar,
+  LuUser,
+} from "react-icons/lu";
 import { auth } from "@/lib/firebase";
 import { useAuth } from "@/lib/auth";
 import { useAdminLang } from "@/lib/useAdminLang";
@@ -26,6 +39,18 @@ const themeVars = {
   "--text-muted": "#64748b",
   "--success": "#10b981",
   "--warning": "#f59e0b",
+};
+
+const navIconMap = {
+  dashboard: LuLayoutDashboard,
+  tours: LuHouse,
+  addTour: LuPlus,
+  blogPosts: LuBookOpen,
+  addBlog: LuFilePlus,
+  inquiries: LuMail,
+  reviews: LuStar,
+  analytics: LuChartBar,
+  profile: LuUser,
 };
 
 export default function AdminLayout({ children }) {
@@ -61,22 +86,42 @@ export default function AdminLayout({ children }) {
 
   const navItems = useMemo(
     () => [
-      { label: t("dashboard"), href: "/dashboard", icon: "icon-home" },
-      { label: t("tours"), href: "/dashboard/tours", icon: "icon-map" },
+      { label: t("dashboard"), href: "/dashboard", icon: "dashboard" },
+      { label: t("tours"), href: "/dashboard/tours", icon: "tours" },
       {
         label: t("addTour"),
         href: "/dashboard/tours/new",
-        icon: "icon-plus",
+        icon: "addTour",
+      },
+      {
+        label: t("blogPosts"),
+        href: "/dashboard/blog",
+        icon: "blogPosts",
+      },
+      {
+        label: t("addBlog"),
+        href: "/dashboard/blog/new",
+        icon: "addBlog",
       },
       {
         label: t("inquiries"),
         href: "/dashboard/inquiries",
-        icon: "icon-mail",
+        icon: "inquiries",
+      },
+      {
+        label: t("reviews"),
+        href: "/dashboard/reviews",
+        icon: "reviews",
+      },
+      {
+        label: t("analytics"),
+        href: "/dashboard/analytics",
+        icon: "analytics",
       },
       {
         label: t("profile"),
         href: "/dashboard/profile",
-        icon: "icon-user",
+        icon: "profile",
       },
     ],
     [t],
@@ -143,7 +188,7 @@ export default function AdminLayout({ children }) {
           }}
           aria-label="Open menu"
         >
-          <i className="icon-menu text-18" />
+          <LuMenu size={18} />
         </button>
       ) : null}
 
@@ -188,7 +233,7 @@ export default function AdminLayout({ children }) {
               letterSpacing: "0.1em",
             }}
           >
-            KASHF
+            TRAVEL EASY
           </div>
           <div
             style={{
@@ -199,7 +244,7 @@ export default function AdminLayout({ children }) {
               letterSpacing: "0.08em",
             }}
           >
-            {t("adminPanel")}
+            Admin Panel
           </div>
 
           <div style={{ marginTop: "16px" }}>
@@ -261,6 +306,7 @@ export default function AdminLayout({ children }) {
           <nav style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
             {navItems.map((item) => {
               const active = isActive(pathname, item.href);
+              const Icon = navIconMap[item.icon] || LuHouse;
               return (
                 <Link
                   key={item.href}
@@ -296,7 +342,7 @@ export default function AdminLayout({ children }) {
                         : "rgba(255,255,255,0.06)",
                     }}
                   >
-                    <i className={`${item.icon} text-13`} />
+                    <Icon size={13} />
                   </span>
                   <span
                     style={{ fontSize: "14px", fontWeight: active ? 600 : 500 }}
@@ -342,7 +388,10 @@ export default function AdminLayout({ children }) {
               fontSize: "13px",
             }}
           >
-            {t("signOut")}
+            <span className="d-inline-flex items-center x-gap-8">
+              <LuLogOut size={14} />
+              <span>{t("signOut")}</span>
+            </span>
           </button>
         </div>
       </aside>

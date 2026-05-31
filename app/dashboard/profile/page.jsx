@@ -538,6 +538,69 @@ export default function ProfilePage() {
                 }
               />
             </div>
+            <div className="col-md-4">
+              <div
+                style={{
+                  color: "#64748b",
+                  fontSize: "12px",
+                  marginBottom: "6px",
+                }}
+              >
+                Telegram URL
+              </div>
+              <input
+                style={inputStyle}
+                value={formState.contact?.telegram || ""}
+                onChange={(e) =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    contact: { ...prev.contact, telegram: e.target.value },
+                  }))
+                }
+              />
+            </div>
+            <div className="col-md-4">
+              <div
+                style={{
+                  color: "#64748b",
+                  fontSize: "12px",
+                  marginBottom: "6px",
+                }}
+              >
+                Facebook URL
+              </div>
+              <input
+                style={inputStyle}
+                value={formState.contact?.facebook || ""}
+                onChange={(e) =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    contact: { ...prev.contact, facebook: e.target.value },
+                  }))
+                }
+              />
+            </div>
+            <div className="col-md-4">
+              <div
+                style={{
+                  color: "#64748b",
+                  fontSize: "12px",
+                  marginBottom: "6px",
+                }}
+              >
+                Instagram URL
+              </div>
+              <input
+                style={inputStyle}
+                value={formState.contact?.instagram || ""}
+                onChange={(e) =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    contact: { ...prev.contact, instagram: e.target.value },
+                  }))
+                }
+              />
+            </div>
           </div>
 
           {LANGS.map((lang) => (

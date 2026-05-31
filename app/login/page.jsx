@@ -66,7 +66,7 @@ export default function LoginPage() {
               letterSpacing: "0.12em",
             }}
           >
-            KASHF
+            TRAVEL EASY
           </div>
           <div style={{ color: "#64748b", fontSize: "13px", marginTop: "4px" }}>
             Admin Panel

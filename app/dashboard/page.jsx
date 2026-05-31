@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import AdminLayout, { useAdminLang } from "@/components/layout/AdminLayout";
 import { collection, getDocs } from "firebase/firestore";
+import { LuBell, LuMail, LuMap } from "react-icons/lu";
 import { db } from "@/lib/firebase";
 import { seedAllTours } from "@/lib/seed";
 import { saveSettings } from "@/lib/settings";
@@ -63,21 +64,21 @@ export default function DashboardPage() {
       {
         title: t("totalTours"),
         value: tours.length,
-        icon: "icon-map",
+        icon: LuMap,
         iconBg: "rgba(59,130,246,0.15)",
         iconColor: "#3b82f6",
       },
       {
         title: t("totalInquiries"),
         value: inquiries.length,
-        icon: "icon-mail",
+        icon: LuMail,
         iconBg: "rgba(16,185,129,0.15)",
         iconColor: "#10b981",
       },
       {
         title: t("newInquiries"),
         value: inquiries.filter((item) => item.status === "new").length,
-        icon: "icon-bell",
+        icon: LuBell,
         iconBg: "rgba(245,158,11,0.15)",
         iconColor: "#f59e0b",
       },
@@ -167,10 +168,24 @@ export default function DashboardPage() {
                 background: "#1a2235",
                 border: "1px solid rgba(255,255,255,0.08)",
                 borderRadius: "16px",
-                padding: "28px",
+                padding: "22px",
                 height: "100%",
+                position: "relative",
               }}
             >
+              <span
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "12px",
+                  width: "24px",
+                  height: "14px",
+                  border: "2px solid rgba(201,168,76,0.7)",
+                  borderBottom: "none",
+                  borderTopLeftRadius: "24px",
+                  borderTopRightRadius: "24px",
+                }}
+              />
               <div
                 style={{
                   width: "52px",
@@ -182,10 +197,7 @@ export default function DashboardPage() {
                   background: card.iconBg,
                 }}
               >
-                <i
-                  className={`${card.icon} text-20`}
-                  style={{ color: card.iconColor }}
-                />
+                <card.icon size={20} style={{ color: card.iconColor }} />
               </div>
 
               <div
