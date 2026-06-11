@@ -63,7 +63,7 @@ export default function AdminLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    if (user === null) {
+    if (user === null || (user && !user.isAdmin)) {
       router.replace("/login");
     }
   }, [user, router]);
@@ -371,7 +371,7 @@ export default function AdminLayout({ children }) {
               textOverflow: "ellipsis",
             }}
           >
-            {user?.email || "admin@kashf.uz"}
+            {user?.email || "admin@travel-easy.uz"}
           </div>
           <button
             onClick={async () => {
