@@ -5,5 +5,6 @@ const nextConfig = {
       { protocol: "https", hostname: "firebasestorage.googleapis.com" },
     ],
   },
+  output: "standalone",
 };
 module.exports = nextConfig;
