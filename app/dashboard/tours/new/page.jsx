@@ -126,14 +126,27 @@ export default function NewTourPage() {
     });
   };
 
-  const uploadImage = async (file) => {
-    if (!file) return;
+  const uploadImage = async (files) => {
+    const imageFiles = Array.from(files || []);
+    if (!imageFiles.length) return;
+
     setUploading(true);
     try {
-      const fileRef = ref(storage, `tours/${Date.now()}_${file.name}`);
-      await uploadBytes(fileRef, file);
-      const url = await getDownloadURL(fileRef);
-      setForm((prev) => ({ ...prev, images: [...prev.images, url] }));
+      const uploadedUrls = await Promise.all(
+        imageFiles.map(async (file, index) => {
+          const fileRef = ref(
+            storage,
+            `tours/${Date.now()}_${index}_${file.name}`,
+          );
+          await uploadBytes(fileRef, file);
+          return getDownloadURL(fileRef);
+        }),
+      );
+
+      setForm((prev) => ({
+        ...prev,
+        images: [...prev.images, ...uploadedUrls],
+      }));
     } finally {
       setUploading(false);
     }
@@ -385,8 +398,12 @@ export default function NewTourPage() {
               <input
                 type="file"
                 accept="image/*"
+                multiple
                 hidden
-                onChange={(e) => uploadImage(e.target.files?.[0])}
+                onChange={(e) => {
+                  uploadImage(e.target.files);
+                  e.target.value = "";
+                }}
               />
             </label>
           </div>
