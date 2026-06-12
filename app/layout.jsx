@@ -10,8 +10,14 @@ import "../styles/index.scss";
 import "rc-slider/assets/index.css";
 
 export const metadata = {
-  title: "Travel Easy Admin",
+  metadataBase: new URL("https://admin.travel-easy.uz"),
+  title: "Travel Easy Uzbekistan Admin",
   description: "Travel Easy Uzbekistan admin panel",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -28,7 +34,6 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="./favicon.ico" />
       </head>
       <body>
         <main>

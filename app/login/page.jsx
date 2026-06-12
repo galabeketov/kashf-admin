@@ -67,7 +67,12 @@ export default function LoginPage() {
     <main className="admin-auth">
       <section className="admin-auth__card" aria-labelledby="login-title">
         <div className="admin-auth__brand">
-          <img src="/img/icons/icon-192.png" alt="" width="58" height="58" />
+          <img
+            src="/img/brand/travel-easy-emblem.svg"
+            alt=""
+            width="68"
+            height="68"
+          />
           <h1 id="login-title">Travel Easy Uzbekistan</h1>
           <p>Administrator boshqaruv paneli</p>
         </div>
