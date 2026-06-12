@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.9"
+    "eslint-config-next": "^16.2.9",
+    "firebase-admin": "^14.0.0"
   }
 }

@@ -50,8 +50,7 @@ export default function LoginPage() {
         password,
       );
       const token = await credential.user.getIdTokenResult(true);
-      if (false) {
-        // if (token.claims.admin !== true) {
+      if (token.claims.admin !== true) {
         await signOut(auth);
         setError("Bu hisobga administrator huquqi berilmagan.");
         return;

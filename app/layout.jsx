@@ -10,8 +10,8 @@ import "../styles/index.scss";
 import "rc-slider/assets/index.css";
 
 export const metadata = {
-  title: "Kashf Admin",
-  description: "Kashf tour guide admin panel",
+  title: "Travel Easy Admin",
+  description: "Travel Easy Uzbekistan admin panel",
 };
 
 export default function RootLayout({ children }) {
